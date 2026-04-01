@@ -99,8 +99,71 @@ function SkylerBotModal({ onClose }) {
   )
 }
 
+const tools = [
+  'A searchable glossary of common VC terms — from cap tables to liquidation preferences.',
+  'A fundraising stages cheat sheet covering everything from Pre-Seed through IPO.',
+  'A dilution calculator that lets you simulate how different fundraising rounds affect ownership.',
+  'A Venture Capital Grader — a custom AI tool that helps you learn about VC firms in a structured format. (Requires ChatGPT)',
+  'The SkylerBot News Ticker: a desktop widget that keeps you current with a live feed of relevant news.',
+]
+
+function WelcomeModal({ onClose }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={onClose} />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 8 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.96, y: 8 }}
+        transition={{ duration: 0.2, ease: 'easeOut' }}
+        className="relative bg-white rounded-2xl border border-[#E0E0E0] shadow-xl w-full max-w-md p-6"
+      >
+        <div className="flex items-start justify-between mb-4">
+          <div>
+            <h2 className="text-base font-semibold text-[#1A1A1A]" style={{ fontFamily: 'Georgia, serif' }}>Welcome to Pelion's Intern Bundle</h2>
+          </div>
+          <button onClick={onClose} className="text-[#CCCCCC] hover:text-[#888888] transition-colors ml-4 shrink-0">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <p className="text-sm text-[#555555] leading-relaxed mb-4">
+          This page was designed to give you five tools that will help you hit the ground running here at Pelion. They are as follows:
+        </p>
+
+        <ol className="space-y-3 mb-6">
+          {tools.map((tool, i) => (
+            <li key={i} className="flex gap-3 text-sm text-[#555555]">
+              <span className="shrink-0 w-5 h-5 rounded-full bg-[#F0F0F0] text-[#888888] text-xs font-semibold flex items-center justify-center mt-0.5">{i + 1}</span>
+              <span className="leading-relaxed">{tool}</span>
+            </li>
+          ))}
+        </ol>
+
+        <button
+          onClick={onClose}
+          className="w-full py-2.5 bg-[#1A1A1A] hover:bg-[#333333] text-white text-sm font-medium rounded-lg transition-colors"
+        >
+          Get Started
+        </button>
+      </motion.div>
+    </div>
+  )
+}
+
 export default function App() {
   const [showModal, setShowModal] = useState(false)
+  const [showWelcome, setShowWelcome] = useState(() => {
+    return !localStorage.getItem('seenWelcome')
+  })
+
+  const closeWelcome = () => {
+    localStorage.setItem('seenWelcome', 'true')
+    setShowWelcome(false)
+  }
+
   return (
     <div className="min-h-screen bg-[#EBEBEB] flex flex-col relative">
 
@@ -149,6 +212,12 @@ export default function App() {
             >
               SkylerBot News Ticker
             </button>
+            <button
+              onClick={() => setShowWelcome(true)}
+              className="text-xs font-medium text-[#888888] border border-[#DEDEDE] rounded-lg px-3 py-1.5 hover:bg-[#F5F5F5] hover:text-[#1A1A1A] transition-colors"
+            >
+              About the Intern Bundle
+            </button>
           </div>
         </div>
       </header>
@@ -191,6 +260,11 @@ export default function App() {
       {/* SkylerBot modal */}
       <AnimatePresence>
         {showModal && <SkylerBotModal onClose={() => setShowModal(false)} />}
+      </AnimatePresence>
+
+      {/* Welcome modal */}
+      <AnimatePresence>
+        {showWelcome && <WelcomeModal onClose={closeWelcome} />}
       </AnimatePresence>
 
       {/* Footer */}
