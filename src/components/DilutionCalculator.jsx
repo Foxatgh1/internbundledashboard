@@ -29,7 +29,7 @@ function formatShares(val) {
   return val.toFixed(0)
 }
 
-function SliderInput({ label, value, onChange, format }) {
+function SliderInput({ label, value, onChange, format, min, max }) {
   const [focused, setFocused] = useState(false)
   const [raw, setRaw] = useState('')
 
