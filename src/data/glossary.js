@@ -413,6 +413,11 @@ export const glossaryTerms = [
 
   // Startup Ecosystem (additional)
   {
+    term: "Rule of 40",
+    definition: "A benchmark for evaluating the health of a SaaS business that states a company's revenue growth rate plus its profit margin should equal or exceed 40%. For example, a company growing at 30% YoY with a 15% profit margin scores 45 — above the threshold. It balances growth and profitability, acknowledging that fast-growing companies can run at a loss and slower-growing ones must be highly profitable. Widely used by VCs and public market investors to assess SaaS quality.",
+    category: "Startup Ecosystem"
+  },
+  {
     term: "Cash Conversion Cycle",
     definition: "A metric measuring the number of days it takes a company to convert investments in inventory and other resources into cash from sales. CCC = Days Inventory Outstanding + Days Sales Outstanding − Days Payable Outstanding. A shorter or negative CCC (common in SaaS and subscription businesses) indicates strong working capital efficiency and is viewed favorably by investors.",
     category: "Startup Ecosystem"
