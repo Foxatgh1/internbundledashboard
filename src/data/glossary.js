@@ -434,6 +434,53 @@ export const glossaryTerms = [
     definition: "A cap table management and equity administration platform used by startups, law firms, and investors. Carta allows companies to issue and track equity, run 409A valuations, and model dilution scenarios. Investors use Carta to view portfolio holdings and receive fund reporting. At Pelion, Carta is used to manage equity positions across the portfolio.",
     category: "Tools & Platforms"
   },
+
+  // Pelion Portfolio
+  {
+    term: "Cloudflare",
+    definition: "Internet security, performance, and reliability company offering CDN, DDoS protection, Zero Trust network access, and a global developer platform. Founded in 2009 and headquartered in San Francisco, Cloudflare went public on the NYSE in 2019 (ticker: NET) and has grown into one of the most widely used internet infrastructure companies in the world. A marquee Pelion exit.",
+    category: "Pelion Portfolio"
+  },
+  {
+    term: "Divvy",
+    definition: "Expense management and corporate card platform that gave small and mid-sized businesses real-time visibility and control over company spending. Acquired by Bill.com in 2021 for approximately $2.5 billion — one of the largest exits in Utah tech history and a landmark outcome for Pelion.",
+    category: "Pelion Portfolio"
+  },
+  {
+    term: "Weave",
+    definition: "All-in-one communication and customer engagement platform built for small businesses in healthcare — including dental, optometry, and veterinary practices. Weave helps practices manage phones, scheduling, payments, and patient messaging from a single platform. IPO'd on the NYSE in 2021 (ticker: WEAV).",
+    category: "Pelion Portfolio"
+  },
+  {
+    term: "Redo",
+    definition: "E-commerce post-purchase platform that enables online retailers to offer branded returns, warranties, and package protection. Redo turns the traditionally costly returns process into a revenue-generating customer experience, reducing friction for both merchants and shoppers.",
+    category: "Pelion Portfolio"
+  },
+  {
+    term: "Kapital",
+    definition: "Business banking platform (kapital.com) designed for small and medium-sized businesses. Kapital provides credit lines, corporate cards, and financial management tools — giving business owners access to the kind of financial infrastructure previously available only to larger enterprises.",
+    category: "Pelion Portfolio"
+  },
+  {
+    term: "LVT (LiveView Technologies)",
+    definition: "Provider of rapidly deployable, solar-powered outdoor surveillance and security camera systems. LVT units are self-contained and can be set up in minutes without external power or connectivity, making them widely used by law enforcement, retailers, municipalities, and construction sites for real-time monitoring and crime deterrence.",
+    category: "Pelion Portfolio"
+  },
+  {
+    term: "Strider Technologies",
+    definition: "National security intelligence company that helps organizations — including corporations, universities, and government agencies — identify and mitigate risks from nation-state-sponsored IP theft, talent targeting, and economic espionage. Strider's data and analytics platform surfaces hidden threats that traditional security tools miss.",
+    category: "Pelion Portfolio"
+  },
+  {
+    term: "Brandlight",
+    definition: "Brand intelligence and visibility platform that helps companies monitor and manage how their brand appears across digital channels. Brandlight gives marketing and e-commerce teams the data they need to protect brand integrity and optimize their presence at scale.",
+    category: "Pelion Portfolio"
+  },
+  {
+    term: "Remi",
+    definition: "Technology-driven roofing company using AI and software to modernize the roof inspection, estimation, and installation process. Remi aims to bring transparency and efficiency to an industry that has historically relied on manual, inconsistent workflows.",
+    category: "Pelion Portfolio"
+  },
 ]
 
 export const categories = [...new Set(glossaryTerms.map(t => t.category))]

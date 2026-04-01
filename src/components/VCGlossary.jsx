@@ -10,6 +10,7 @@ const categoryColors = {
   Exit:                'bg-[#F8EEEE] text-[#803838] border-[#E0C8C8]',
   'Startup Ecosystem': 'bg-[#F8F2E8] text-[#7A5820] border-[#E0CEAC]',
   'Tools & Platforms': 'bg-[#F2EEFC] text-[#5A3E90] border-[#D8CCEE]',
+  'Pelion Portfolio':  'bg-[#EEF5F0] text-[#3A7A55] border-[#C8E0D0]',
 }
 
 function TermRow({ term, definition, category, isOpen, onToggle }) {
@@ -57,7 +58,7 @@ export default function VCGlossary() {
   const [openTerms, setOpenTerms] = useState(new Set())
   const [activeCategory, setActiveCategory] = useState('All')
 
-  const categories = ['All', 'Valuation', 'Deal Terms', 'Fund Mechanics', 'Cap Table', 'Exit', 'Startup Ecosystem', 'Tools & Platforms']
+  const categories = ['All', 'Pelion Portfolio', 'Valuation', 'Deal Terms', 'Fund Mechanics', 'Cap Table', 'Exit', 'Startup Ecosystem', 'Tools & Platforms']
 
   const filtered = useMemo(() => {
     let terms = [...glossaryTerms]

@@ -2,7 +2,14 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { fundingStages } from '../data/stages'
 
+const PELION_FOCUS = {
+  'seed':     { label: 'Pelion invests here', style: 'bg-[#EEF5F0] text-[#3A7A55] border-[#C8E0D0]' },
+  'series-a': { label: 'Pelion invests here', style: 'bg-[#EEF5F0] text-[#3A7A55] border-[#C8E0D0]' },
+  'series-b': { label: 'Pelion follow-on',    style: 'bg-[#F5F5F5] text-[#888888] border-[#DEDEDE]' },
+}
+
 function StageCard({ stage, isOpen, onToggle }) {
+  const pelion = PELION_FOCUS[stage.id]
   return (
     <div className="rounded-xl border border-[#E8E8E8] overflow-hidden mb-3 last:mb-0">
       <button
@@ -40,16 +47,16 @@ function StageCard({ stage, isOpen, onToggle }) {
 
         {/* Investor badges preview */}
         <div className="mt-3 flex flex-wrap gap-1.5">
-          {stage.investors.slice(0, 2).map((inv, i) => (
+          {pelion && (
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs border bg-[#EEF5F0] text-[#3A7A55] border-[#C8E0D0] font-medium">
+              {pelion.label}
+            </span>
+          )}
+          {stage.investors.map((inv, i) => (
             <span key={i} className={`inline-flex items-center px-2 py-0.5 rounded text-xs border ${stage.badgeBg}`}>
               {inv}
             </span>
           ))}
-          {stage.investors.length > 2 && (
-            <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs border ${stage.badgeBg}`}>
-              +{stage.investors.length - 2} more
-            </span>
-          )}
         </div>
       </button>
 

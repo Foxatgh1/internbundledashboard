@@ -23,13 +23,21 @@ function formatPct(val) {
   return `${val.toFixed(1)}%`
 }
 
-function SliderInput({ label, value, min, max, step, onChange, format }) {
+function formatShares(val) {
+  if (val >= 1_000_000) return `${(val / 1_000_000).toFixed(2)}M`
+  if (val >= 1_000) return `${(val / 1_000).toFixed(0)}K`
+  return val.toFixed(0)
+}
+
+function SliderInput({ label, value, onChange, format }) {
   const [focused, setFocused] = useState(false)
   const [raw, setRaw] = useState('')
 
-  const handleFocus = () => {
+  const handleFocus = (e) => {
     setFocused(true)
-    setRaw(String(value))
+    const rawVal = format === 'millions' ? String(value / 1_000_000) : String(value)
+    setRaw(rawVal)
+    setTimeout(() => e.target.select(), 0)
   }
 
   const handleBlur = () => {
@@ -41,11 +49,11 @@ function SliderInput({ label, value, min, max, step, onChange, format }) {
     }
   }
 
-  const displayValue = format === 'millions'
-    ? focused ? raw : formatCurrency(value)
-    : format === 'percent'
-    ? focused ? raw : `${value}%`
-    : focused ? raw : value
+  const displayValue = focused ? raw : (
+    format === 'millions' ? formatCurrency(value) :
+    format === 'percent' ? `${value}%` :
+    value
+  )
 
   return (
     <div className="space-y-1.5">
@@ -57,21 +65,9 @@ function SliderInput({ label, value, min, max, step, onChange, format }) {
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={e => setRaw(e.target.value)}
+          onKeyDown={e => { if (e.key === 'Enter') e.target.blur() }}
           className="w-28 text-right text-xs font-semibold text-[#1A1A1A] border border-[#E8E8E8] rounded-md px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#AAAAAA] focus:border-[#AAAAAA] bg-white"
         />
-      </div>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={e => onChange(parseFloat(e.target.value))}
-        className="w-full h-1.5 bg-[#E8E8E8] rounded-full appearance-none cursor-pointer accent-[#1A1A1A]"
-      />
-      <div className="flex justify-between text-[10px] text-[#CCCCCC]">
-        <span>{format === 'millions' ? formatCurrency(min) : format === 'percent' ? `${min}%` : min}</span>
-        <span>{format === 'millions' ? formatCurrency(max) : format === 'percent' ? `${max}%` : max}</span>
       </div>
     </div>
   )
@@ -311,7 +307,7 @@ export default function DilutionCalculator() {
                 <tr className="border-b border-[#EEEEEE]">
                   <th className="text-left text-[10px] text-[#AAAAAA] font-medium pb-1.5">Stakeholder</th>
                   <th className="text-right text-[10px] text-[#AAAAAA] font-medium pb-1.5">Ownership</th>
-                  <th className="text-right text-[10px] text-[#AAAAAA] font-medium pb-1.5">Fully Diluted</th>
+                  <th className="text-right text-[10px] text-[#AAAAAA] font-medium pb-1.5">Shares</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#F5F5F5]">
@@ -321,7 +317,7 @@ export default function DilutionCalculator() {
                     <span className="text-xs text-[#555555]">Founders</span>
                   </td>
                   <td className="py-2 text-right text-xs font-semibold text-[#1A1A1A]">{formatPct(result.founderPct)}</td>
-                  <td className="py-2 text-right text-xs text-[#AAAAAA]">Yes</td>
+                  <td className="py-2 text-right text-xs text-[#AAAAAA]">{formatShares(result.founderShares)}</td>
                 </tr>
                 {result.investorGroups.map((g, i) => (
                   <tr key={g.label}>
@@ -332,7 +328,7 @@ export default function DilutionCalculator() {
                       </div>
                     </td>
                     <td className="py-2 text-right text-xs font-semibold text-[#1A1A1A]">{formatPct(g.pct)}</td>
-                    <td className="py-2 text-right text-xs text-[#AAAAAA]">Yes</td>
+                    <td className="py-2 text-right text-xs text-[#AAAAAA]">{formatShares(g.shares)}</td>
                   </tr>
                 ))}
                 {result.optionPoolPct > 0.01 && (
@@ -344,7 +340,7 @@ export default function DilutionCalculator() {
                       </div>
                     </td>
                     <td className="py-2 text-right text-xs font-semibold text-[#1A1A1A]">{formatPct(result.optionPoolPct)}</td>
-                    <td className="py-2 text-right text-xs text-[#AAAAAA]">Yes</td>
+                    <td className="py-2 text-right text-xs text-[#AAAAAA]">{formatShares(result.optionPoolShares)}</td>
                   </tr>
                 )}
               </tbody>
@@ -352,16 +348,31 @@ export default function DilutionCalculator() {
                 <tr className="border-t border-[#EEEEEE]">
                   <td className="pt-2 text-xs font-semibold text-[#888888]">Total</td>
                   <td className="pt-2 text-right text-xs font-semibold text-[#1A1A1A]">100%</td>
-                  <td />
+                  <td className="pt-2 text-right text-xs font-semibold text-[#888888]">{formatShares(result.totalShares)}</td>
                 </tr>
               </tfoot>
             </table>
           </div>
 
+          {/* Valuation progression (multi-round only) */}
+          {rounds.length > 1 && (
+            <div>
+              <h4 className="text-xs font-semibold text-[#AAAAAA] uppercase tracking-wider mb-2">Valuation by Round</h4>
+              <div className="space-y-1.5">
+                {rounds.map((r, i) => (
+                  <div key={r.id} className="flex items-center justify-between text-xs">
+                    <span className="text-[#888888]">{r.label} post-money</span>
+                    <span className="font-semibold text-[#1A1A1A]">{formatCurrency(r.preMoney + r.investment)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Key stats */}
           <div className="grid grid-cols-2 gap-3 pt-1">
             <div className="bg-[#F8F8F8] rounded-lg p-3 border border-[#EEEEEE]">
-              <div className="text-[10px] text-[#AAAAAA] uppercase tracking-wider font-medium">Post-Money Val.</div>
+              <div className="text-[10px] text-[#AAAAAA] uppercase tracking-wider font-medium">Final Post-Money</div>
               <div className="text-sm font-bold text-[#1A1A1A] mt-0.5">{formatCurrency(postMoneyFinal)}</div>
             </div>
             <div className="bg-[#F8F8F8] rounded-lg p-3 border border-[#EEEEEE]">

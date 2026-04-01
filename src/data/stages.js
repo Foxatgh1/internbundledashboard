@@ -25,8 +25,8 @@ export const fundingStages = [
     ],
     dealStructures: ["SAFE with valuation cap", "Convertible note", "Friends & family round (often informal)"],
     example: {
-      company: "Airbnb",
-      detail: "Raised $20K from Y Combinator in 2009 before any institutional funding to build out their concept.",
+      company: "Pika",
+      detail: "In 2023, co-founders Demi Guo and Chenlin Meng left their Stanford PhD programs with an AI video prototype and joined Y Combinator, securing an initial $500K check before going on to raise $55M from Lightspeed later that year.",
     },
   },
   {
@@ -55,8 +55,8 @@ export const fundingStages = [
     ],
     dealStructures: ["SAFE (most common)", "Priced equity round", "Convertible note"],
     example: {
-      company: "Figma",
-      detail: "Raised a $3.8M seed round in 2013 with a vision for browser-based design tools before the market believed it was possible.",
+      company: "Perplexity AI",
+      detail: "Raised a $3.1M seed round in early 2023 from Elad Gil and others to build an AI-powered answer engine — before AI search became one of the most competitive categories in tech.",
     },
   },
   {
@@ -85,8 +85,8 @@ export const fundingStages = [
     ],
     dealStructures: ["Priced preferred equity round", "Typical: 1x non-participating liquidation preference", "Board seat for lead investor"],
     example: {
-      company: "Stripe",
-      detail: "Raised a $18M Series A from Sequoia and others in 2012 after proving their payments API had strong developer traction.",
+      company: "Harvey AI",
+      detail: "Raised a $21M Series A led by Sequoia in 2023 to build AI for law firms — demonstrating that vertical AI applications with clear enterprise ROI could command institutional backing even in a risk-off market.",
     },
   },
   {
@@ -115,8 +115,8 @@ export const fundingStages = [
     ],
     dealStructures: ["Priced preferred equity with full ratchet or broad-based WA anti-dilution", "Potentially more complex governance terms", "Possible secondary component for founders"],
     example: {
-      company: "Slack",
-      detail: "Raised a $120M Series B in 2015 after explosive enterprise adoption, validating its team communication model.",
+      company: "ElevenLabs",
+      detail: "Raised an $80M Series B led by a16z in early 2024 at a $1.1B valuation — reaching unicorn status after proving their AI voice technology had deep enterprise demand across media, gaming, and accessibility.",
     },
   },
   {
@@ -145,8 +145,8 @@ export const fundingStages = [
     ],
     dealStructures: ["Priced round at minimal protective terms", "Possible IPO ratchets or downside protection", "Significant secondary liquidity for founders and early employees"],
     example: {
-      company: "Uber",
-      detail: "Raised a $258M Series C in 2013 from Google Ventures and others as it began rapid international expansion.",
+      company: "Cohere",
+      detail: "Raised a $270M Series C in 2023 to scale its enterprise LLM platform, positioning itself as the B2B alternative to OpenAI by focusing on data privacy, deployment flexibility, and customization for large organizations.",
     },
   },
   {
@@ -175,8 +175,8 @@ export const fundingStages = [
     ],
     dealStructures: ["Structured equity with downside protection", "Preferred return mechanisms", "IPO ratchets tied to performance", "Large secondary component (50%+ of round sometimes)"],
     example: {
-      company: "Canva",
-      detail: "Raised at a $40B valuation in 2021 with $1B+ ARR, fueled by pandemic-driven design adoption worldwide.",
+      company: "Wiz",
+      detail: "Raised $1B at a $12B valuation in 2024, making it the fastest company ever to reach $100M ARR. Turned down a $23B acquisition offer from Google to pursue an independent path — one of the boldest founder decisions in recent tech history.",
     },
   },
   {
@@ -205,8 +205,8 @@ export const fundingStages = [
     ],
     dealStructures: ["Traditional IPO via investment banks", "Direct Listing (no new shares, no underwriter)", "SPAC merger (declining in popularity)", "Dual-class share structure (common for founder control)"],
     example: {
-      company: "Snowflake",
-      detail: "Raised $3.4B in its 2020 IPO at a $33B valuation — the largest software IPO in history at the time — backed by Sequoia and Salesforce Ventures.",
+      company: "Reddit",
+      detail: "IPO'd on the NYSE in March 2024 at a $6.4B valuation after nearly two decades as a private company. The offering was notable for allocating shares directly to active users — a rare move that reflected Reddit's community-first identity.",
     },
   },
 ]
