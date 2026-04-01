@@ -126,8 +126,8 @@ export default function App() {
       <header className="bg-white border-b border-[#DEDEDE] sticky top-0 z-20">
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-[#1A1A1A] rounded-sm flex items-center justify-center shrink-0">
-              <span className="text-white font-bold text-sm" style={{ fontFamily: 'Georgia, serif' }}>P</span>
+            <div className="w-8 h-8 rounded-sm flex items-center justify-center shrink-0 overflow-hidden">
+              <img src="/internbundledashboard/favicon.png" alt="Pelion" className="w-full h-full object-contain" />
             </div>
             <div>
               <h1 className="text-base font-semibold text-[#1A1A1A] leading-tight tracking-wide" style={{ fontFamily: 'Georgia, serif' }}>The Intern Bundle</h1>
