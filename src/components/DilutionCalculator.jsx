@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 const DEFAULT_ROUNDS = [
@@ -228,8 +228,22 @@ const ROUND_COLORS = [
   { bar: 'bg-fuchsia-600', badge: 'bg-fuchsia-50 text-fuchsia-700' },
 ]
 
+const STORAGE_KEY = 'dilution_calculator_rounds'
+
 export default function DilutionCalculator() {
-  const [rounds, setRounds] = useState(DEFAULT_ROUNDS)
+  const [rounds, setRounds] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY)
+      if (saved) return JSON.parse(saved)
+    } catch {}
+    return DEFAULT_ROUNDS
+  })
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(rounds))
+    } catch {}
+  }, [rounds])
 
   const updateRound = (id, updated) => {
     setRounds(prev => prev.map(r => r.id === id ? updated : r))
@@ -359,7 +373,7 @@ export default function DilutionCalculator() {
             <div>
               <h4 className="text-xs font-semibold text-[#AAAAAA] uppercase tracking-wider mb-2">Valuation by Round</h4>
               <div className="space-y-1.5">
-                {rounds.map((r, i) => (
+                {rounds.map((r) => (
                   <div key={r.id} className="flex items-center justify-between text-xs">
                     <span className="text-[#888888]">{r.label} post-money</span>
                     <span className="font-semibold text-[#1A1A1A]">{formatCurrency(r.preMoney + r.investment)}</span>

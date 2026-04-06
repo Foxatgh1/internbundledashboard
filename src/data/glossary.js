@@ -413,6 +413,26 @@ export const glossaryTerms = [
 
   // Startup Ecosystem (additional)
   {
+    term: "ARR / MRR",
+    definition: "Annual Recurring Revenue (ARR) and Monthly Recurring Revenue (MRR) measure the predictable, subscription-based revenue a SaaS company generates. MRR = total active subscription revenue in a month; ARR = MRR × 12. These are the primary top-line metrics VCs use to size and value SaaS businesses. Growth rate (e.g. 3x ARR YoY) and ARR relative to valuation (ARR multiple) are core inputs to pricing a round.",
+    category: "Startup Ecosystem"
+  },
+  {
+    term: "NRR (Net Revenue Retention)",
+    definition: "A measure of revenue growth or contraction within a company's existing customer base over a period, typically 12 months. NRR = (starting MRR + expansions − contractions − churn) / starting MRR. An NRR above 100% means the existing customer base is growing on its own — a strong signal of product stickiness and efficient growth. Best-in-class SaaS companies (e.g. Snowflake, Datadog) sustain NRR above 120–130%. Investors often weight NRR as heavily as top-line growth.",
+    category: "Startup Ecosystem"
+  },
+  {
+    term: "CAC / LTV",
+    definition: "Customer Acquisition Cost (CAC) is the total sales and marketing spend required to acquire one new customer. Lifetime Value (LTV) is the total gross profit a company expects to earn from a customer over the full relationship. LTV:CAC ratio is a core unit economics metric — a ratio of 3:1 or higher is generally considered healthy, meaning the business earns $3 for every $1 spent acquiring customers. Payback period (CAC / monthly gross profit per customer) measures how long it takes to recoup acquisition costs.",
+    category: "Startup Ecosystem"
+  },
+  {
+    term: "Churn",
+    definition: "The rate at which customers cancel or fail to renew their subscriptions over a given period. Logo churn (customer churn) measures the percentage of customers lost; revenue churn measures the percentage of MRR lost. High churn is one of the most damaging signals in a SaaS business — it creates a 'leaky bucket' where growth spend is offset by lost revenue. Net churn (revenue churn minus expansion revenue) feeds directly into NRR. VCs scrutinize cohort retention curves to distinguish structural churn from early-lifecycle noise.",
+    category: "Startup Ecosystem"
+  },
+  {
     term: "Rule of 40",
     definition: "A benchmark for evaluating the health of a SaaS business that states a company's revenue growth rate plus its profit margin should equal or exceed 40%. For example, a company growing at 30% YoY with a 15% profit margin scores 45 — above the threshold. It balances growth and profitability, acknowledging that fast-growing companies can run at a loss and slower-growing ones must be highly profitable. Widely used by VCs and public market investors to assess SaaS quality.",
     category: "Startup Ecosystem"
